@@ -1,30 +1,26 @@
 ---
 import Hamburger from "./Hamburger.astro";
-import SelectedIcon from "../components/SelectedIcon.astro"
 import SocialBar from "./SocialBar.astro";
+import NavLink from "./NavLink.astro";
 import DarkModeButton from "./DarkModeButton.astro";
 ---
 
 <nav class="w-full flex" role="navigation" aria-label="Main navigation">
   <div class="flex items-center justify-between w-full">
     <div class="brand">
-      <a href="#" class="text-2xl font-bold text-white whitespace-nowrap"
+      <a href="#" class="text-3xl font-bold whitespace-nowrap"
         >Gripweed Consulting</a
       >
     </div>
     <Hamburger />
   </div>
   <ul
-    class="navMenu hidden absolute top-14 left-0 w-full py-3 md:py-0 text-center md:flex md:items-center md:w-fit md:static md:gap-6 bg-red-900 md:bg-transparent text-white text-xl"
+    class="navMenu hidden absolute top-14 left-0 w-full py-3 md:py-0 text-center md:flex md:items-center md:w-fit md:static md:gap-6 bg-dark-vermillion dark:bg-extra-dark-vermillion md:bg-transparent dark:md:bg-transparent text-xl"
   >
-    <li><a href="/" class="hover:underline">Home</a></li>
-    <li><a href="#" class="hover:underline">About</a></li>
-    <li><a href="#" class="hover:underline">Blog</a></li>
-    <li class="flex justify-center items-center h-7">
-      <DarkModeButton />
-    </li>
-    <li class="flex justify-center items-center h-7">
+    <NavLink url="/" text="Home"/>
+    <NavLink url="#" text="About"/>
+    <NavLink url="#" text="Blog"/>
+     <DarkModeButton/>
       <SocialBar/>  
-    </li>
   </ul>
 </nav>

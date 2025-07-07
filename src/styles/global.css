@@ -2,8 +2,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
+@font-face {
+    font-family: 'Hammer Fat';
+    src: url('../assets/hammerfat.ttf');
+}
+
+
 @theme {
     --font-display: "Roboto", "sans-serif";
+    --font-navbar: "Hammer Fat", "sans-serif";
+    --color-vermillion: #D83114;
+    --color-dark-vermillion: #C70039 ;
+    --color-extra-dark-vermillion: #900C3F;
+    --color-special-yellow: #FFC107;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
