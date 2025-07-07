@@ -1,6 +1,11 @@
 ---
 import SelectedIcon from "./SelectedIcon.astro";
-const socials = ["upwork", "reddit", "linkedin", "x"];
+const socials = [
+  { platform: "upwork", url: "#" },
+  { platform: "reddit", url: "#" },
+  { platform: "linkedin", url: "#" },
+  { platform: "x", url: "#" },
+];
 ---
 
 <li class="flex justify-center items-center h-7">
@@ -8,8 +13,16 @@ const socials = ["upwork", "reddit", "linkedin", "x"];
     {
       socials.map((social) => (
         <li>
-          <a href="#">
-            <SelectedIcon name={social} class="hover:text-amber-500 dark:hover:text-amber-400 cursor-pointer" />
+          <a
+            href={social.url || "#"}
+            aria-label={social.platform}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <SelectedIcon
+              name={social.platform}
+              class="hover:text-amber-500 dark:hover:text-amber-400 cursor-pointer"
+            />
           </a>
         </li>
       ))
