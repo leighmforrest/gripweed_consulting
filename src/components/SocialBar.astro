@@ -1,0 +1,7 @@
+---
+import SelectedIcon from "./SelectedIcon.astro"
+const socials = ["upwork", "reddit", "linkedin", "x"]
+---
+ <ul class="flex gap-2 text-sm">
+    {socials.map(social => <li><a href="#"><SelectedIcon name={social} class="hover:text-amber-400"/></a></li>)}
+</ul>
