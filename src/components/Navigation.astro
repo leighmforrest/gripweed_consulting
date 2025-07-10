@@ -5,7 +5,7 @@ import NavLink from "./NavLink.astro";
 import DarkModeButton from "./DarkModeButton.astro";
 ---
 
-<nav class="w-full flex" role="navigation" aria-label="Main navigation">
+<nav class="w-full flex z-20" role="navigation" aria-label="Main navigation">
   <div class="flex items-center justify-between w-full">
     <div class="brand">
       <a href="#" class="text-3xl font-bold whitespace-nowrap"
@@ -17,10 +17,11 @@ import DarkModeButton from "./DarkModeButton.astro";
   <ul
     class="navMenu hidden absolute top-14 left-0 w-full py-3 md:py-0 text-center md:flex md:items-center md:w-fit md:static md:gap-4 bg-dark-vermillion dark:bg-extra-dark-vermillion md:bg-transparent dark:md:bg-transparent text-xl"
   >
-    <NavLink url="/" text="Home"/>
-    <NavLink url="#" text="About"/>
-    <NavLink url="#" text="Blog"/>
-     <DarkModeButton/>
-      <SocialBar/>  
+    <NavLink url="/" text="Home" />
+    <NavLink url="#" text="About" />
+    <NavLink url="#" text="Blog" />
+    <NavLink url="#contact" text="Contact" />
+    <DarkModeButton />
+    <SocialBar />
   </ul>
 </nav>

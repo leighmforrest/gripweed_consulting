@@ -1,0 +1,22 @@
+---
+import { Image } from "astro:assets";
+import hero from "../images/hero.jpeg";
+---
+<div class="relative min-h-screen overflow-hidden">
+  <!-- Full-screen responsive image -->
+  <Image
+    src={hero}
+    alt="Gripweed Consulting"
+    width={1920}
+    height={1080}
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+
+  <!-- Centered content panel -->
+  <div class="relative z-10 flex items-center justify-center min-h-screen">
+    <div class="bg-transparent p-8 max-w-xl text-center font-navbar text-dark-vermillion dark:text-amber-400">
+      <h1 class="text-5xl font-bold whitespace-nowrap">Gripweed Consulting</h1>
+      <p class="text-lg">We solve problems before they reach you.</p>
+    </div>
+  </div>
+</div>
