@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!navMenu.classList.contains("hidden")) navMenu.classList.add("hidden")
   })
 
-  darkModeButton?.addEventListener("click", () => {
-    document.querySelector("body")?.classList.toggle("dark");
-  });
+  // darkModeButton?.addEventListener("click", () => {
+  //   document.querySelector("body")?.classList.toggle("dark");
+  // });
 });

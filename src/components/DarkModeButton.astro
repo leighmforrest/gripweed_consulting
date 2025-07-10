@@ -1,8 +1,15 @@
 ---
-import SelectedIcon from "./SelectedIcon.astro";
+import { Icon } from 'astro-icon/components';
 ---
 <li class="flex justify-center items-center h-7">
-  <button class="darkMode hover:text-amber-500 dark:hover:text-amber-400" aria-label="Toggle dark mode"
-    ><SelectedIcon name="sun" class="text-2xl" /></button
-  >
+  <button id="darkModeToggle" class="w-6 h-6 hover:text-amber-500 dark:hover:text-amber-400" aria-label="Toggle dark mode">
+    <Icon name="moon" class="w-full icon-moon block dark:hidden" />
+    <Icon name="sun" class="w-full icon-sun hidden dark:block" />
+  </button>
 </li>
+
+<script is:inline>
+  document.getElementById("darkModeToggle")?.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+  });
+</script>
