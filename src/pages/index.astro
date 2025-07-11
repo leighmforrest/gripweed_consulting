@@ -2,34 +2,23 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ContactForm from "../components/ContactForm.astro";
 import ContentPanel from "../components/ContentPanel.astro";
+import TextPanel from "../components/TextPanel.astro";
 import Hero from "../components/Hero.astro";
 ---
 
 <BaseLayout>
-	<Hero/>
-	<ContentPanel id="contact">
-    <div class="mx-4 md:my-0 p-6 md:px-10 md:pt-10">
-      <h3 class="w-full text-center text-2xl font-medium">Contact Us</h3>
-      <p class="mt-4">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Et tempora
-        debitis nulla aliquam consequatur, quaerat reiciendis incidunt eum
-        maxime soluta similique quidem explicabo obcaecati ut quod? Doloribus
-        amet ipsam ad. Error atque aperiam, consequatur aliquam nobis
-        voluptatibus, inventore animi itaque esse, molestias vitae ad modi
-        suscipit debitis necessitatibus? Doloribus possimus, quaerat vero hic
-        praesentium nobis. Eum suscipit dicta libero deserunt? Dolorem libero
-        quia dolorum minus ducimus, ab vero in. Sed praesentium ipsa ullam iure
-        repellendus omnis. Exercitationem earum eum totam, minus velit cumque
-        saepe voluptate. Impedit obcaecati quo doloribus tenetur. Architecto
-        cupiditate quidem, facere, magnam, alias corporis tenetur voluptatibus
-        commodi fugiat ullam expedita cumque consequuntur aspernatur magni? Ipsa
-        magni vitae ipsam quos, libero quo similique accusamus, impedit facilis
-        magnam eveniet. Voluptate aliquam voluptatibus obcaecati labore dolorum
-        culpa temporibus tenetur, laudantium consectetur. Veniam doloremque
-        tenetur rem itaque laboriosam aspernatur laudantium, cum quisquam totam
-        sequi expedita sint unde reiciendis magni, necessitatibus voluptate.
-      </p>
-    </div>
+  <Hero />
+  <ContentPanel id="contact">
+    <TextPanel title="Contact Us">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Et tempora
+      debitis nulla aliquam consequatur, quaerat reiciendis incidunt eum maxime
+      soluta similique quidem explicabo obcaecati ut quod? Doloribus amet ipsam
+      ad. Error atque aperiam, consequatur aliquam nobis voluptatibus, inventore
+      animi itaque esse, molestias vitae ad modi suscipit debitis
+      necessitatibus? Doloribus possimus, quaerat vero hic praesentium nobis.
+      Eum suscipit dicta libero deserunt? Dolorem libero quia dolorum minus
+      ducimus, ab vero in.
+    </TextPanel>
     <ContactForm />
   </ContentPanel>
 </BaseLayout>

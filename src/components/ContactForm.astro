@@ -5,7 +5,12 @@
 <div
   class="not-content md:mx-4 md:my-3 dark:text-gray-100 p-6 text-gray-900 dark:bg-gray-800"
 >
-  <form id="contact-form" name="contact-form" class="mt-4 md:mt-0 flex flex-col gap-3" method="post">
+  <form
+    id="contact-form"
+    name="contact-form"
+    class="mt-4 md:mt-0 flex flex-col gap-3"
+    method="post"
+  >
     <input type="hidden" name="form-name" value="contact" />
     <div>
       <label for="contact-name" class="mb-1 text-gray-600">Name</label>
@@ -33,12 +38,15 @@
     <div>
       <label for="contact-message" class="text-gray-600">Message</label>
       <textarea
+        id="message-textarea"
         name="message"
         class="form__input bg-gray-200 dark:bg-gray-700 placeholder:text-gray-500 dark:placeholder:text-gray-300"
         id="contact-message"
         rows="4"
         placeholder="write your message here"
         required></textarea>
+      <p id="char-count" class="text-sm" aria-live="polite"></p>
+
     </div>
     <!-- honeypot field to catch bots.  -->
     <label for="emmie" class="sr-only">Real users skip this field</label>
@@ -100,14 +108,18 @@
   }
 </style>
 <script>
+  const MESSAGE_MIN = 5;
+  const MESSAGE_MAX = 500;
 
-const endpoint = import.meta.env.PUBLIC_API_URL;
+  const endpoint = import.meta.env.PUBLIC_API_URL;
   const contactForm = document.querySelector("#contact-form");
   const successPanel = document.querySelector("#success-panel");
   const failurePanel = document.querySelector("#failure-panel");
   const submitButton = document.querySelector(".submit-button");
   const submitText = document.querySelector("#submit-text");
   const spinner = document.querySelector("#spinner");
+  const messageTextarea = document.querySelector("#message-textarea");
+  const charCount = document.querySelector("#char-count");
   const allItems = [contactForm, successPanel, failurePanel];
 
   const hideAll = () =>
@@ -119,6 +131,11 @@ const endpoint = import.meta.env.PUBLIC_API_URL;
     // 🚫 Honeypot: if filled, reject
     if (contactForm?.emmie.value !== "") {
       console.warn("Bot detected: honeypot field filled.");
+      return;
+    }
+
+    if (contactForm?.message.value.length < MESSAGE_MIN) {
+      charCount.textContent = `Message must be minimum ${MESSAGE_MIN} characters.`
       return;
     }
 
@@ -140,6 +157,7 @@ const endpoint = import.meta.env.PUBLIC_API_URL;
       if (response.ok) {
         hideAll();
         successPanel?.classList.remove("hidden");
+        charCount.textContent = "";
         contactForm?.reset();
 
         setTimeout(() => {
@@ -166,4 +184,20 @@ const endpoint = import.meta.env.PUBLIC_API_URL;
   };
 
   contactForm?.addEventListener("submit", handleContactSubmit);
+  messageTextarea?.addEventListener("input", (e) => {
+    const messageLength = messageTextarea.value.length;
+
+    charCount.textContent = messageLength
+    if (messageLength < MESSAGE_MIN || messageLength > MESSAGE_MAX) {
+      charCount.classList.add("text-red-500")
+      charCount.classList.remove("text-green-500")
+    } else {
+      charCount.classList.remove("text-red-500")
+      charCount.classList.add("text-green-500")
+    }
+
+    if (messageLength > MESSAGE_MAX) {
+      messageTextarea.value = messageTextarea.value.substring(0, MESSAGE_MAX)
+    }
+  });
 </script>
