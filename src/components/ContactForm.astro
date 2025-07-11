@@ -5,7 +5,7 @@
 <div
   class="not-content mx-4 my-3 dark:text-gray-100 p-6 text-gray-900 dark:bg-gray-800 md:p-10"
 >
-  <form id="contact-form" name="contact form" class="mt-4 flex flex-col gap-3">
+  <form id="contact-form" name="contact-form" class="mt-4 flex flex-col gap-3">
     <input type="hidden" name="form-name" value="contact" />
     <div>
       <label for="contact-name" class="mb-1 text-gray-600">Name</label>
@@ -40,13 +40,51 @@
         placeholder="write your message here"
         required></textarea>
     </div>
+    <!-- honeypot field to catch bots.  -->
+    <label for="emmie" class="sr-only">Real users skip this field</label>
+    <input id="emmie" type="text" name="emmie" class="sr-only" tabindex="-1" />
     <button
       type="submit"
-      class="focus-visible:ring-opacity-50 flex items-center justify-center gap-2 rounded-md bg-blue-600 p-2.5 text-white transition hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+      class="submit-button focus-visible:ring-opacity-50 flex items-center justify-center gap-2 rounded-md bg-blue-600 p-2.5 text-white transition hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
     >
-      Submit
+      <svg
+        id="spinner"
+        class="hidden w-5 h-5 animate-spin text-white"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          class="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"
+        ></path>
+      </svg>
+      <span id="submit-text">Submit</span>
     </button>
   </form>
+  <!-- Success Panel -->
+  <div
+    class="bg-green-600 text-white mx-4 my-3 p-6 md:p-10 hidden h-full"
+    id="success-panel"
+  >
+    <h3 class="w-full text-center text-2xl font-medium">Success!</h3>
+    <p class="mt-4 text-center">
+      We have received your message. You will be hearing from us soon!
+    </p>
+  </div>
+  <!-- Failure Panel -->
+  <div
+    class="mx-4 my-3 p-6 md:p-10 hidden h-full bg-red-600 text-white"
+    id="failure-panel"
+  >
+    <h3 class="w-full text-center text-2xl font-medium">Failure!</h3>
+    <p class="mt-4 text-center">Something went wrong!</p>
+  </div>
 </div>
 
 <style>
@@ -56,4 +94,76 @@
     @apply w-full rounded-md border border-transparent p-2.5 transition outline-none;
     @apply focus-visible:border-blue-600/70 focus-visible:ring-2 focus-visible:ring-blue-600/50;
   }
+
+  #spinner {
+    @apply transition-opacity duration-500;
+  }
 </style>
+<script>
+const endpoint = import.meta.env.PUBLIC_API_URL;
+  const contactForm = document.querySelector("#contact-form");
+  const successPanel = document.querySelector("#success-panel");
+  const failurePanel = document.querySelector("#failure-panel");
+  const submitButton = document.querySelector(".submit-button");
+  const submitText = document.querySelector("#submit-text");
+  const spinner = document.querySelector("#spinner");
+  console.log(endpoint)
+  const allItems = [contactForm, successPanel, failurePanel];
+
+  const hideAll = () =>
+    allItems.forEach((item) => item?.classList.add("hidden"));
+
+  const handleContactSubmit = async (e) => {
+    e.preventDefault();
+
+    // 🚫 Honeypot: if filled, reject
+    if (contactForm?.emmie.value !== "") {
+      console.warn("Bot detected: honeypot field filled.");
+      return;
+    }
+
+    const formData = new FormData(contactForm);
+
+    submitButton.disabled = true;
+    submitText.textContent = "Sending";
+    spinner.classList.remove("hidden");
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formData,
+      });
+
+      if (response.ok) {
+        hideAll();
+        successPanel?.classList.remove("hidden");
+        contactForm?.reset();
+
+        setTimeout(() => {
+          successPanel?.classList.add("hidden");
+          contactForm?.classList.remove("hidden");
+        }, 8000);
+      } else {
+        hideAll();
+        failurePanel?.classList.remove("hidden");
+
+        setTimeout(() => {
+          failurePanel?.classList.add("hidden");
+          contactForm?.classList.remove("hidden");
+        }, 8000);
+      }
+    } catch (error) {
+      hideAll();
+      failurePanel?.classList.remove("hidden");
+    } finally {
+      submitButton.disabled = false;
+      submitText.textContent = "Submit";
+      spinner.classList.add("hidden");
+    }
+  };
+
+  contactForm?.addEventListener("submit", handleContactSubmit);
+</script>
