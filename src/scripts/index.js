@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   /** DOM ELEMENTS THAT MATTER */
   const hamburger = document.querySelector(".hamburger");
   const navMenu = document.querySelector(".navMenu");
@@ -8,10 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
   /** Event Listeners */
   hamburger?.addEventListener("click", () => {
     navMenu?.classList.toggle("hidden");
-    console.log(navMenu)
+    hamburger.classList.toggle("open");
   });
 
-  main?.addEventListener("click", ()=> {
-    if (!navMenu.classList.contains("hidden")) navMenu.classList.add("hidden")
-  })
+  main?.addEventListener("click", () => {
+    if (!navMenu.classList.contains("hidden")) {
+      navMenu.classList.add("hidden");
+      hamburger.classList.remove("open");
+    }
+  });
 });
