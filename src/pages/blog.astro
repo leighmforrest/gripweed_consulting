@@ -1,19 +1,13 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ContactForm from "../components/ContactForm.astro";
-import ContentPanel from "../components/ContentPanel.astro";
-import TextPanel from "../components/TextPanel.astro";
-import Hero from "../components/Hero.astro";
+import BlogPostCard from "../components/BlogPostCard.astro";
+
+const allPosts = await getCollection("blog")
 ---
 
 <BaseLayout>
-  <ContentPanel id="contact">
-    <TextPanel title="Blog">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, inventore, magni blanditiis nisi ut ipsa incidunt quibusdam fugit placeat explicabo impedit quo deleniti ipsum, rerum eaque debitis porro architecto sit.
-      Quis voluptas eos at, ipsa eligendi impedit et eius? Quaerat possimus dolore in fugiat similique, velit dicta aspernatur explicabo deleniti quis eveniet nam, repellendus perspiciatis dolorem fuga impedit repellat doloremque?
-      Sint expedita officia quos sed vero dolor unde architecto in, quis et deleniti ratione quod rerum asperiores repudiandae minus, ipsa nostrum libero dolorum eaque quisquam consequuntur? Facilis nesciunt sequi eius.
-      Officiis perspiciatis eum dicta, sunt optio fuga consectetur praesentium ipsam blanditiis aliquam? Harum, consectetur sint. Aliquid itaque dolorem neque dolores impedit numquam harum accusantium corrupti, in fuga eveniet alias est.
-    </TextPanel>
-    <div></div>
-  </ContentPanel>
+  <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 m-4">
+        {allPosts.map(post => <BlogPostCard url={`/posts/${post.id}`} shortTitle={post.data.shortTitle} image={post.data.image}/>)}
+  </section>
 </BaseLayout>
