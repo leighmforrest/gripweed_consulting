@@ -45,10 +45,10 @@ pre {
   font-size: 1.25rem;
   border-radius: 0.5rem;
   margin-bottom: 1.5rem;
+  background-color: darkslategrey;
 }
 
 code {
   display: block;
   white-space: pre;
-    background-color: green;
 }
