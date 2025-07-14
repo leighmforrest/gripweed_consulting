@@ -1,6 +1,6 @@
 ---
-title: "Second Post"
-shortTitle: "Second"
+title: "Test That Jawn: django-pytest"
+shortTitle: "django-pytest"
 pubDate: 2025-07-14
 author: "Leigh Forrest"
 image:

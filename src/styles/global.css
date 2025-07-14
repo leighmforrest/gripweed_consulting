@@ -37,6 +37,7 @@
 }
 
 code {
+    background-color: green;
     font-family: "Roboto Mono", monospace;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
