@@ -36,8 +36,19 @@
   transform: rotate(-45deg) translateY(-1.1rem);
 }
 
+/* CSS for displaying source code */
+pre {
+  width: 100%;
+  overflow-x: auto;
+  padding: 1rem;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.25rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
 code {
+  display: block;
+  white-space: pre;
     background-color: green;
-    font-family: "Roboto Mono", monospace;
-    font-size: 1.25rem;
 }

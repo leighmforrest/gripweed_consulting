@@ -25,6 +25,8 @@ const formattedDate = new Date(post.data.pubDate).toLocaleDateString("en-US", {
                 <p class="text-center italic">{formattedDate}</p>
     </section>
     <section id="content" class="min-h-screen text-xl px-6">
-        <Content />
-    </section>
+  <article class="prose prose-lg dark:prose-invert max-w-none">
+    <Content />
+  </article>
+</section>
 </PostLayout>
