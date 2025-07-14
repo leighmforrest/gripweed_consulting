@@ -40,12 +40,18 @@
 pre {
   width: 100%;
   overflow-x: auto;
+  margin: 1rem;
   padding: 1rem;
   font-family: "Roboto Mono", monospace;
   font-size: 1.25rem;
   border-radius: 0.5rem;
   margin-bottom: 1.5rem;
   background-color: darkslategrey;
+}
+
+.dark code {
+  background-color: slategrey;
+  color: darkblue
 }
 
 code {
