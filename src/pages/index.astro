@@ -3,11 +3,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ContactForm from "../components/ContactForm.astro";
 import ContentPanel from "../components/ContentPanel.astro";
 import TextPanel from "../components/TextPanel.astro";
+import ImagePanel from "../components/ImagePanel.astro";
 import Hero from "../components/Hero.astro";
 ---
 
 <BaseLayout>
   <Hero />
+  <ContentPanel id="about">
+    <TextPanel title="About Gripweed Consulting">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, doloribus aliquid. Esse facere ad, molestias commodi quasi nam, laboriosam magni dolor hic omnis fugiat eaque similique ut nobis, impedit suscipit! Expedita a dolores, eaque ducimus consequatur aliquam animi dicta doloribus ullam aperiam qui reiciendis cum impedit labore cupiditate distinctio molestiae neque nisi rerum nostrum, placeat suscipit! Molestias minima voluptatibus adipisci eaque nam nostrum, amet totam doloremque itaque dicta consequatur provident sequi aperiam accusantium maiores porro dolor incidunt aspernatur cupiditate tempore perferendis. Debitis dolores dolore commodi voluptatem dicta ullam excepturi. Sint veniam dicta expedita iusto. Distinctio placeat incidunt praesentium, amet nihil facilis quaerat corrupti obcaecati quia in, dolore magnam quisquam sed. Aliquam quos fuga iure esse quidem nemo officiis sit beatae, similique at provident mollitia! Dolorem.
+    </TextPanel>
+    <ImagePanel url="https://placehold.co/600" alt="About Gripweed Consulting"/>
+  </ContentPanel>
   <ContentPanel id="contact">
     <TextPanel title="Contact Us">
       Ready to build something that works? Use the form below to tell us what
